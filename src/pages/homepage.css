@@ -13,6 +13,13 @@
     width: 50%;
 }
 
+.homeButtons>img{
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    margin-top: 50px;
+}
+
 .homeButtons>div{
     /* border: 2px solid red; */
     font-size: 20px;
@@ -21,7 +28,7 @@
     gap: 30px;
     width: 60%;
     margin: auto;
-    margin-top: 40%;
+    margin-top: 10%;
     justify-content: center;
 }
 
@@ -30,7 +37,12 @@
     text-align: right;
     padding-right: 20px;
     font-size: 25px;
-    color: white;
+    color: greenyellow;
     margin-top: 100px;
+}
+
+.player{
+    border: 1px solid white;
+    
 }
 
