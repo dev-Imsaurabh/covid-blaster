@@ -12,7 +12,7 @@ function App() {
       <Navbar />
       <AllRoutes />
 
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 }
