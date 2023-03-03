@@ -1,0 +1,36 @@
+.home{
+    /* margin-top: 200px; */
+    display: flex;
+}
+
+.home>img{
+    width: 50%;
+    height: 710px;
+}
+
+.homeButtons{
+    /* border: 2px solid red; */
+    width: 50%;
+}
+
+.homeButtons>div{
+    /* border: 2px solid red; */
+    font-size: 20px;
+    /* padding: 10px 10px ; */
+    display: flex;
+    gap: 30px;
+    width: 60%;
+    margin: auto;
+    margin-top: 40%;
+    justify-content: center;
+}
+
+.homeButtons>p{
+    /* border: 1px solid red; */
+    text-align: right;
+    padding-right: 20px;
+    font-size: 25px;
+    color: white;
+    margin-top: 100px;
+}
+
