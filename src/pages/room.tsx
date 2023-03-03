@@ -14,7 +14,7 @@ export const Room = () => {
                     <input className="player" type="number" placeholder="Add player ID"/>
                 </form>
             <div>
-            <a href=""><button className="button-85">ADD PLAYER</button></a>
+            <a href="https://my-app-rose-six.vercel.app/play"><button className="button-85">ADD PLAYER</button></a>
              </div>
             
         </div>
