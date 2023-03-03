@@ -4,6 +4,8 @@ import { Game } from "../scripts/Game";
 import "./homepage.css";
 import "../styles/button.css"
 
+
+
 export default function Homepage({}){
     const id = 123456
 

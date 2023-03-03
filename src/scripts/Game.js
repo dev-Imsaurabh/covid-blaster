@@ -1,15 +1,22 @@
 //project setup
 import spaceship from "./spaceship.png"
 import enemy from "./enemy.png"
-export const Game=()=>{
+import "./style.css"
+import destroyed from "../assets/destroyed.mp3"
+
+export const Game=({setScore,setActive})=>{
     
 window.onload=()=>{
-    const div = document.createElement("div")
+    const div  = document.createElement("div")
+    // document.body.style.overflow="hidden"
     div.style.position="relative"
+    div.style.width ="1080px"
+    div.style.height =window.innerHeight
+    // div.style.border="1px solid yellow"
     const can = document.createElement("canvas")
     const h1 = document.createElement("H1")
     h1.style.fontSize="100px"
-    h1.style.backgroundColor="red"
+    h1.className="bg"
     h1.innerText="Game over"
     h1.style.position="absolute"
     h1.style.top=0
@@ -22,13 +29,14 @@ window.onload=()=>{
     span.setAttribute("id","score")
     span.style.position = "absolute"
     span.style.top=0
+
     div.append(can,h1,span)
     window.document.body.append(div)
     const canvas = document.querySelector("canvas")
     canvas.style.margin="auto"
     const c = canvas.getContext("2d")
-    canvas.width =window.innerWidth
-    canvas.height =576
+    canvas.width =1080
+    canvas.height =window.innerHeight
     const shipSpeed = 10
     const enemydownspeed =30
     const enemyshootspeed =5
@@ -381,6 +389,11 @@ window.onload=()=>{
                     enemyProjectiles.splice(index,1)
                     player.opacity =0
                     game.over = true
+                    let audio = new Audio()
+                    audio.src=destroyed
+                    audio.play()
+                    setActive(false)
+
                 
                 },0)
                 setTimeout(()=>{
@@ -434,11 +447,12 @@ window.onload=()=>{
                                createParticles(enemy,"red",true)
             
                             scoreboard+=+100
+                            setScore(scoreboard)
                             console.log(scoreboard)
                                 grid.enemys.splice(i,1)
                                 projectiles.splice(j,1)
     
-                                score.innerHTML="Score: "+scoreboard
+                                // score.innerHTML="Score: "+scoreboard
                         
                                 //increase score add sound
     
