@@ -16,6 +16,7 @@ import io from "socket.io-client";
 import {
   ABSOLUTE,
   AUTO,
+  BLACK,
   COLUMN,
   FILL_25PARENT,
   FILL_75PARENT,
@@ -23,7 +24,13 @@ import {
   FILL_PARENT,
   GREEN,
   LARGE,
+  MEDIUM,
+  PINK,
+  RED,
   START,
+  TRANSPARENT,
+  WHITE,
+  YELLOW,
 } from "../constants/constants";
 import { Game } from "../scripts/Game";
 import laser_cannon from "../assets/laser_cannon.mp3";
@@ -33,6 +40,7 @@ import { ChatBar } from "../components/ChatBar";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../constants/config";
+import "./room.css"
 
 const obj = {};
 
@@ -219,39 +227,39 @@ export default function Playpage() {
   // console.log(player);
 
   return (
-    <Flex m={AUTO} w={FILL_90PARENT}>
-      <Box w={FILL_75PARENT}>{Game({ setScore, setActive, active })}</Box>
+    <Flex  m={AUTO} w={FILL_90PARENT}>
+      <Box  w={FILL_75PARENT}>{Game({ setScore, setActive, active })}</Box>
       <VStack
+      className="bg"
         h={"100vh"}
         position={ABSOLUTE}
+        borderLeft={"1px dotted white"}
         top={2}
         right={4}
         w={FILL_25PARENT}
       >
-        <VStack>
-          <HStack>
-            <Badge fontSize={LARGE} colorscheme={GREEN}>
+        <VStack  gap={2}>
+          <HStack mt={"20px"}>
+            <Badge fontSize={LARGE} colorScheme={GREEN}>{player}</Badge>
+            <Badge fontSize={LARGE} color={WHITE} colorScheme={PINK}>
               Your Score: {score}
             </Badge>
-            <Text>
-              {"You are "}
-              <Badge colorscheme={GREEN}>{player}</Badge>
-            </Text>
+            <Badge fontSize={LARGE} color={YELLOW} colorScheme={RED}>Timer: {timer}</Badge>
           </HStack>
-          <Text>{timer}</Text>
-          <Heading mt={20}>Realtime Leaderboard</Heading>
+          
+          <Heading fontSize={LARGE} >Realtime Leaderboard</Heading>
 
           <VStack w={FILL_PARENT}>
-            <Card w={FILL_PARENT}>
+            <Card bg={TRANSPARENT} border={"1px solid white"} w={FILL_PARENT}>
               <CardBody>
-                <VStack w={FILL_PARENT}>
+                <VStack  alignItems={START} justifyContent={START} w={FILL_PARENT}>
                   <HStack colorscheme={GREEN}>
-                    <Badge colorscheme={GREEN}>{Object.keys(room)[2]}</Badge>
+                    <Badge bg={GREEN}>{"You"}</Badge>
                     <Text>{score}</Text>
                   </HStack>
 
                   <HStack>
-                    <Badge colorscheme={GREEN}>{Object.keys(room)[1]}</Badge>
+                    <Badge bg={RED}>{Object.keys(room)[2]}</Badge>
                     <Text>{player2.id?p2Score:"Wating..."}</Text>
                   </HStack>
                  
@@ -259,13 +267,32 @@ export default function Playpage() {
               </CardBody>
             </Card>
           </VStack>
+          <Button
+          colorScheme={GREEN}
+          width={FILL_PARENT}
+                display={
+                  room
+                    ? maker.id == localStorage.getItem("userId")
+                      ? "block"
+                      : "none"
+                    : "none"
+                }
+                onClick={() => {
+                  localStorage.setItem("start",1)
+                  socketRef.current.emit("start", {
+                    rid: sessionStorage.getItem("rid"),
+                  });
+                  window.location.reload()
+                }}
+              >
+                Start Match
+              </Button>
 
           <VStack w={FILL_PARENT} position={ABSOLUTE} bottom={10} mt={100}>
             <Flex
               w={FILL_PARENT}
               justifyContent={START}
               direction={COLUMN}
-              gap={2}
             >
               {chats?.map((el) => (
                 <ChatBar chat={el} />
@@ -290,24 +317,7 @@ export default function Playpage() {
                 Send
               </Button>
 
-              <Button
-                display={
-                  room
-                    ? maker.id == localStorage.getItem("userId")
-                      ? "block"
-                      : "none"
-                    : "none"
-                }
-                onClick={() => {
-                  localStorage.setItem("start",1)
-                  socketRef.current.emit("start", {
-                    rid: sessionStorage.getItem("rid"),
-                  });
-                  window.location.reload()
-                }}
-              >
-                sm
-              </Button>
+          
             </HStack>
           </VStack>
         </VStack>

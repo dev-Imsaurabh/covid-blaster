@@ -34,6 +34,7 @@ window.onload=()=>{
     window.document.body.append(div)
     const canvas = document.querySelector("canvas")
     canvas.style.margin="auto"
+    canvas.style.border = "1px dotted white"
     const c = canvas.getContext("2d")
     canvas.width =950
     canvas.height =window.innerHeight
