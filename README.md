@@ -13,8 +13,8 @@
 
 - CSS Library
  - Chakra UI
- 
- # Deployed Link :- https://my-app-rose-six.vercel.app/room
+
+ # Deployed Link :- https://my-app-rose-six.vercel.app/
  # Supported Browser 
  - Google Chrome -only (no incognito)
 # Create Room & Join Room 
