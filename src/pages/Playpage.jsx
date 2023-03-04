@@ -60,6 +60,7 @@ export default function Playpage() {
   const [player2, setPlayer2] = useState("");
   const [p2Score,setP2Score] = useState(0)
   const [over,setOver] = useState(false)
+  const [refresh,setRefresh] = useState(false)
  
   useEffect(() => {
     socketRef.current = io.connect("wss://covid-blaster-game.onrender.com/");
@@ -222,9 +223,23 @@ export default function Playpage() {
     };
 
     getRoom();
-  }, []);
+  }, [refresh]);
 
   // console.log(player);
+
+  useEffect(()=>{
+    let id = setInterval(()=>{
+
+      if(player2.id==null){
+        setRefresh((prev)=>!prev)
+        console.log("yes")
+      }else{
+        clearInterval(id)
+      }
+
+    },2000)
+
+  },[])
 
   return (
     <Flex  m={AUTO} w={FILL_90PARENT}>
