@@ -9,8 +9,8 @@
 }
 
 .homeButtons{
+    width: 100%;
     /* border: 2px solid red; */
-    width: 50%;
 }
 
 .homeButtons>img{

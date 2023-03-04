@@ -27,7 +27,7 @@ export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   let location = useLocation()
   
-  if (location.pathname === '/play') {
+  if (location.pathname === '/play'||location.pathname === '/room') {
     return null;
   }
   return (

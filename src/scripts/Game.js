@@ -10,7 +10,7 @@ window.onload=()=>{
     const div  = document.createElement("div")
     // document.body.style.overflow="hidden"
     div.style.position="relative"
-    div.style.width ="1080px"
+    div.style.width ="950px"
     div.style.height =window.innerHeight
     // div.style.border="1px solid yellow"
     const can = document.createElement("canvas")
@@ -35,7 +35,7 @@ window.onload=()=>{
     const canvas = document.querySelector("canvas")
     canvas.style.margin="auto"
     const c = canvas.getContext("2d")
-    canvas.width =1080
+    canvas.width =950
     canvas.height =window.innerHeight
     const shipSpeed = 10
     const enemydownspeed =30
@@ -402,6 +402,7 @@ window.onload=()=>{
                   document.querySelector("h1").style.display="block"
                 
                 },2000)
+                
             }
     
         })
