@@ -51,6 +51,7 @@ export default function Playpage() {
   const [player, setPlayer] = useState("");
   const [player2, setPlayer2] = useState("");
   const [p2Score,setP2Score] = useState(0)
+  const [over,setOver] = useState(false)
  
   useEffect(() => {
     socketRef.current = io.connect("wss://covid-blaster-game.onrender.com/");
@@ -155,8 +156,9 @@ export default function Playpage() {
     if (localStorage.getItem("start") == 1) {
       let id = setInterval(() => {
         setTimer((prev) => {
-          if (prev == 60) {
+          if (prev == 20) {
             localStorage.setItem("start", 0);
+            setOver(true)
             clearInterval(id);
           } else {
             return prev + 1;
@@ -165,6 +167,20 @@ export default function Playpage() {
       }, 1000);
     }
   }, []);
+
+  useEffect(()=>{
+    if(over==true){
+      window.location.href ="https://my-app-rose-six.vercel.app/results"
+    }
+
+  },[over])
+
+  useEffect(()=>{
+
+    localStorage.setItem("p1",score)
+    localStorage.setItem("p2",p2Score)
+
+  },[score,p2Score])
 
   // console.log(timer)
 
