@@ -9,6 +9,7 @@ import {
   HStack,
   Input,
   Text,
+  useToast,
   VStack,
 } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
@@ -61,6 +62,7 @@ export default function Playpage() {
   const [p2Score,setP2Score] = useState(0)
   const [over,setOver] = useState(false)
   const [refresh,setRefresh] = useState(false)
+  const toast = useToast()
  
   useEffect(() => {
     socketRef.current = io.connect("wss://covid-blaster-game.onrender.com/");
@@ -140,6 +142,20 @@ export default function Playpage() {
     }
      
   }, [score]);
+
+  useEffect(()=>{
+    if(player2.id!=null){
+      toast({
+        title: 'Player Joined',
+        description: "You can start the match",
+        status: 'success',
+        duration: 2000,
+        isClosable: true,
+        position:"top"
+      })
+    }
+
+  },[room])
 
   useEffect(() => {
     if (chats?.length > 4) {
@@ -221,8 +237,10 @@ export default function Playpage() {
       } else {
       }
     };
+    if(player2.id==null){
+      getRoom();
+    }
 
-    getRoom();
   }, [refresh]);
 
   // console.log(player);
@@ -238,6 +256,7 @@ export default function Playpage() {
       }
 
     },2000)
+
 
   },[])
 

@@ -128,7 +128,10 @@ export const Room = () => {
 
             {rooms?.map((el:room)=>{
 
-                return <RoomsCard {...el} setRefresh={setRefresh} />
+                if(Number(Date.now())-Number(el.created)<300000){
+                    return <RoomsCard {...el} setRefresh={setRefresh} />
+                }
+
             })}
 
         </VStack>

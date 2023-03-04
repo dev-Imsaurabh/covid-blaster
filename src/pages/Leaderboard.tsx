@@ -18,7 +18,7 @@ export default function Leaderboard(){
         if(Number(score1) > Number(score2)){
             setWinner("You Won")
       }else if(Number(score1) < Number(score2)){
-          setWinner("Player2 Won")
+          setWinner("Player 2 Won")
       }else{
           setWinner("Tie")
       }
@@ -41,8 +41,8 @@ export default function Leaderboard(){
 
         <Table width={"500px"} h="200px" border="1px solid white" color={"black"} fontWeight="700" fontSize={"25px"} margin={"auto"} mt="40px">
             <Tr>
-                <Th>Name</Th>
-                <Th>Score</Th>
+                <Th>Players</Th>
+                <Th>Scores</Th>
             </Tr>
             <Tr>
                 <Td>You</Td>
@@ -50,7 +50,7 @@ export default function Leaderboard(){
             </Tr>
 
             <Tr>
-                <Td>Player2</Td>
+                <Td>Player 2</Td>
                 <Td>{score2}</Td>
             </Tr>
            
