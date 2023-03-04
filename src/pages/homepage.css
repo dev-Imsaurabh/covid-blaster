@@ -6,6 +6,8 @@
 .home>img{
     width: 50%;
     height: 710px;
+    opacity: 0.2;
+
 }
 
 .homeButtons{
@@ -37,8 +39,8 @@
     text-align: right;
     padding-right: 20px;
     font-size: 25px;
-    color: greenyellow;
-    margin-top: 100px;
+    color: white;
+    margin-top: 20px;
 }
 
 .player{

@@ -1,5 +1,5 @@
 import { Badge, Box, Button, Card, CardBody, Text } from "@chakra-ui/react";
-import { FILL_PARENT, GREEN } from "../../constants/constants";
+import { FILL_PARENT, GREEN, TRANSPARENT } from "../../constants/constants";
 import {useEffect,useState} from "react"
 import { useNavigate } from "react-router-dom";
 
@@ -43,11 +43,11 @@ export default function RoomsCard({rid,p1,p2,created,setRefresh}:room){
     // },[timer])
 
 
-    return <Card w={FILL_PARENT}>
+    return <Card border={"1px solid white"} w={FILL_PARENT} bg={TRANSPARENT}>
 
         <CardBody>
 
-            <Box w={FILL_PARENT}>
+            <Box  w={FILL_PARENT}>
 
                 <Badge>{"Room ID "+String(rid)+" | "}</Badge>
                 <Badge colorScheme={"red"}>{"Time: "+String(300-Math.floor((Number(timer)-Number(created))/1000))+" sec left"}</Badge>
@@ -55,7 +55,7 @@ export default function RoomsCard({rid,p1,p2,created,setRefresh}:room){
                 <Text>Player 2: {JSON.parse(p2).id?JSON.parse(p2).id:"Waiting"}</Text>
                 
 
-                <Button  bg={GREEN} display={JSON.parse(p1).id==localStorage.getItem("userId")?"block":"none"} onClick={()=>{
+                <Button variant={"outline"}  colorScheme={"pink"} display={JSON.parse(p1).id==localStorage.getItem("userId")?"block":"none"} onClick={()=>{
                     sessionStorage.setItem("rid",String(rid))
                     nav("/play")
 

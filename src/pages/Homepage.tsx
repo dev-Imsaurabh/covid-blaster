@@ -14,7 +14,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react'
-import { GREEN } from "../constants/constants";
+import { BLACK, GREEN, PINK, TRANSPARENT, WHITE, WHITESMOKE } from "../constants/constants";
 import axios from "axios";
 import { BASE_URL } from "../constants/config";
 
@@ -39,7 +39,7 @@ export default function Homepage({}) {
 
       <div className="homeButtons">
         <p>Your Player ID: {id}</p>
-        <img src="https://media3.giphy.com/media/dJezVlwfVulTykjRQj/giphy.gif?cid=ecf05e47bo36cie802msre03aopsq2y9zjr0d9s3bvb8wri1&rid=giphy.gif&ct=g"></img>
+        {/* <img src="https://media3.giphy.com/media/dJezVlwfVulTykjRQj/giphy.gif?cid=ecf05e47bo36cie802msre03aopsq2y9zjr0d9s3bvb8wri1&rid=giphy.gif&ct=g"></img> */}
         <div>
           <Link to="/room">
             <button className="button-85" onClick={() => handleClick()}>
@@ -54,11 +54,11 @@ export default function Homepage({}) {
             </button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent color={BLACK} bg={PINK}>
           <ModalHeader>Enter Room ID</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            <Input placeholder="Enter room ID" value={roomId} onChange={(e)=>setRoomId(e.target.value)}></Input>
+          <ModalBody bg={TRANSPARENT}>
+            <Input border={"1px solid black"} color={BLACK} _placeholder={{color:BLACK}} placeholder="Enter room ID" value={roomId} onChange={(e)=>setRoomId(e.target.value)}></Input>
 
 
 
@@ -67,10 +67,10 @@ export default function Homepage({}) {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
+            <Button colorScheme={WHITE} mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button variant='ghost' onClick={async()=>{
+            <Button colorScheme={PINK}  onClick={async()=>{
 
               try {
                 let res = await axios({
