@@ -63,6 +63,17 @@ export default function Playpage() {
   const [over,setOver] = useState(false)
   const [refresh,setRefresh] = useState(false)
   const toast = useToast()
+
+
+  useEffect(()=>{
+
+    if(localStorage.getItem("starttime")!=null){
+      if(Number(Date.now())-Number(localStorage.getItem("starttime"))>20000){
+       localStorage.setItem("start",0) 
+      }
+    }
+
+  },[])
  
   useEffect(() => {
     socketRef.current = io.connect("wss://covid-blaster-game.onrender.com/");
@@ -101,17 +112,28 @@ export default function Playpage() {
     console.log(sessionStorage.getItem("rid"));
   }, []);
 
+  //change 1
   useEffect(() => {
     socketRef.current.on(sessionStorage.getItem("rid"), (data) => {
-
-      if(data.start){
-        localStorage.setItem("start",1)
-        window.location.reload()
-        console.log("60 sec timer")
-      }else{
+      if(localStorage.getItem("start")==1){
         setP2Score(data.score)
+      }else{
+        setP2Score(0)
       }
+      console.log(data)
+    
+    });
+  }, []);
 
+
+  //change 2
+  useEffect(() => {
+    socketRef.current.on(sessionStorage.getItem("rid")+"start", (data) => {
+
+      localStorage.setItem("start",1)
+      localStorage.setItem("starttime",Date.now())
+      window.location.reload()
+      console.log("60 sec timer")
       console.log(data)
     
     });
@@ -260,6 +282,8 @@ export default function Playpage() {
 
   },[])
 
+  
+
   return (
     <Flex  m={AUTO} w={FILL_90PARENT}>
       <Box  w={FILL_75PARENT}>{Game({ setScore, setActive, active })}</Box>
@@ -313,6 +337,7 @@ export default function Playpage() {
                 }
                 onClick={() => {
                   localStorage.setItem("start",1)
+                  localStorage.setItem("starttime",Date.now())
                   socketRef.current.emit("start", {
                     rid: sessionStorage.getItem("rid"),
                   });
