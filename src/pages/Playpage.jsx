@@ -217,7 +217,7 @@ export default function Playpage() {
 
   useEffect(()=>{
     if(over==true){
-      window.location.href ="https://my-app-rose-six.vercel.app/results"
+      window.location.href ="https://covidblaster.vercel.app/results"
     }
 
   },[over])
